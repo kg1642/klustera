@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+            table {
+                border-collapse: collapse;
+                border: 2px black solid;
+                font: 12px sans-serif;
+            }
+
+            td {
+                border: 1px black solid;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+    <table>
+        <P>{{ length }} records found. Download data as csv file.</P>
+        <form method="get" action="download.html">
+        <button type="submit">Download!</button>
+        </form>
+        <tr>
+            {% for display in display_list %}
+            <th>{{ display }}</th>
+            {% endfor %}
+        </tr>
+        {% for datam in data %}
+        <tr>
+            {% for items in datam %}
+            <td>{{ items }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+    </table>
+    </body>
+</html>

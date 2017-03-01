@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Filter Data</title>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+          type="text/css"/>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="http://davidstutz.github.io/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="http://davidstutz.github.io/bootstrap-multiselect/dist/css/bootstrap-multiselect.css"
+          type="text/css"/>
+    <style>
+        .all {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+<center>
+    {#    <form action="datareturn.html" method="post">#}
+    {#        {% csrf_token %}#}
+    {#        <select id="page_category" multiple="multiple" name="page_categories[]">#}
+    {#            {{ form }}#}
+    {#        </select>#}
+    {#    </form>#}
+    <form action="datareturn.html" method="post">
+        {% csrf_token %}
+        <h1>Klustera Filter Data</h1>
+        <div class="all">
+            <strong>Page_category:</strong>
+            <select id="page_category" name="page_categories[]" multiple="multiple">
+                {% for category in categories %}
+                    <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="all">
+            <strong>Gender:</strong>
+            <select id="gender" multiple="multiple" name="gender[]">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="unidentified">Unidentified</option>
+            </select><br>
+        </div>
+
+        <div class="all">
+            <strong></strong>Location:</strong>
+            <select id="location" multiple="multiple" name="locations[]">
+                {% for location in locations %}
+                    <option value="{{ location }}">{{ location }}</option>
+                {% endfor %}
+            </select><br>
+        </div>
+
+        <div class="all">
+            <strong>Probs_location:</strong>
+            <select id="probs_location" multiple="multiple" name="probs_locations[]">
+                {% for probs_location in probs_locations %}
+                    <option value="{{ probs_location }}">{{ probs_location }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="all">
+            <strong>Age Range:</strong>
+            From: <input type="text"  name="age_low">
+            To: <input type="text"  name="age_high">
+        </div>
+
+        <div class="all">
+            <strong>Show</strong>
+            <select id="show" multiple="multiple" name="display[]">
+                <option value="id_fb">Id_fb</option>
+                <option value="email">email</option>
+                <option value="first_name">First Name</option>
+                <option value="middle_name">Middle Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="cumple">Age</option>
+                <option value="link_profile">Profile_link</option>
+                <option value="location">Location</option>
+                <option value="probs_location">Probs_location</option>
+                <option value="mac">Mac Address</option>
+                <option value="last_visit_mac">Last Active Time</option>
+            </select>
+        </div>
+        <input type="submit" value="Submit" name="submit">
+    </form>
+
+    <script>
+
+        $('#page_category').multiselect({
+            enableClickableOptGroups: true
+        });
+        $('#gender').multiselect({
+            enableClickableOptGroups: true
+        });
+        $('#gender').multiselect({
+            enableClickableOptGroups: true
+        });
+        $('#location').multiselect({
+            enableClickableOptGroups: true
+        });
+        $('#probs_location').multiselect({
+            enableClickableOptGroups: true
+        });
+        $('#show').multiselect({
+            enableClickableOptGroups: true
+        });
+
+        $('#submit').onclick({});
+    </script>
+
+
+</center>
+</body>
